@@ -11,6 +11,12 @@ vault.log
 # 3rd party repos
 3rdparty/ignore/*
 
+# AI
+
+## Claude Code
+CLAUDE.local.md
+settings.local.json
+
 # NextJS
 
 ## TypeScript
@@ -236,6 +242,9 @@ build/
 *.old2
 *.tmp2
 *.backup2
+.trash/
+bak/
+tmp/
 
 ## VCS Related
 .git/

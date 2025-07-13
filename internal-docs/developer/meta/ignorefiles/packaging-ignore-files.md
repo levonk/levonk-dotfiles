@@ -33,7 +33,7 @@ These patterns are included in:
 /config/local.*
 
 # Documentation
-/docs/
+/internal-docs/
 /website/
 *.md
 !README.md

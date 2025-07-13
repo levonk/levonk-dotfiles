@@ -41,16 +41,32 @@ const CONFIG = {
     include: ['vcs', 'security'],
     exclude: ['ai', 'packaging']
   },
+  '.hgignore': {
+    include: ['vcs', 'security'],
+    exclude: ['ai', 'packaging']
+  },
   '.terraformignore': {
     include: ['vcs', 'security'],
     exclude: ['ai', 'packaging']
   },
   // Packaging Ignore Files (.npmignore)
+  '.pnpmignore': {
+    include: ['packaging', 'vcs', 'security'],
+    exclude: ['ai']
+  },
+  '.yarnignore': {
+    include: ['packaging', 'vcs', 'security'],
+    exclude: ['ai']
+  },
   '.npmignore': {
     include: ['packaging', 'vcs', 'security'],
     exclude: ['ai']
   },
-  // AI Ignore Files (.codeiumignore, .cursorignore)
+  // AI Ignore Files (Gemini, .codeiumignore, .cursorignore)
+  '.aiexclude': {
+    include: ['ai', 'vcs', 'security'],
+    exclude: ['packaging']
+  },
   '.codeiumignore': {
     include: ['ai', 'vcs', 'security'],
     exclude: ['packaging']

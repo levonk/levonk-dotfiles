@@ -1,3 +1,9 @@
+# MCP Config stores keys
+mcp.json
+mcp_config.json
+cline_mcp_settings.json
+
+
 ## Database files - need to commit & use in AI usually
 #.sql
 #.sqlite

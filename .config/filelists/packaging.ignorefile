@@ -15,13 +15,27 @@ known_hosts
 # Environment setup
 .env
 !.env.example
+.devcontainer/
 
 # 3rd party repos
-3rdparty/ignore/*
+3rdparty/ignore/
+
+# Taskmaster
+.taskmaster/
+
+# Original project files
+tasks.json
+tasks/
+prd.txt
+scripts/prd.txt
+.env 
 
 # Deployment
 ## Vercel
 .vercel/
+
+# CSS, SCSS, Less
+.stylelintrc
 
 # NextJS
 
@@ -41,14 +55,16 @@ coverage/
 *.local.js
 *.test.js.snap
 
-## Next.js build output
-.next/
-out/
-
-## Next.js build output
+# Next.js
+.eslintrc
+.prettierrc
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+## Next.js build output
+.next/
+out/
 
 # Python Byte-compiled / optimized / DLL files
 __pycache__/
@@ -76,11 +92,44 @@ wheels/
 .installed.cfg
 *.egg
 
+## Python Linters
+.flake8
+.pylintrc
+
 # Editor files
 *.sublime-*
-*.code-workspace
 *.swp
+.taskmaster
+
+## JetBrains Idea
+.idea
+
+
+## Claude Code
+.claude
+
+## Cline
+.cline/
+.cline-rules
+cline_docs/
+
+## vi droppings
 *~
+
+## vscode
+.vscode
+*.code-workspace
+*global_rules.md
+.vscode/settings.json
+
+### Windsurf
+.windsurf
+.windsurfrules
+.codeiumignore
+
+### Cursor
+.cursor
+.cursorignore
 
 # Temporary files
 .bak
@@ -208,9 +257,13 @@ obj/
 *.exe
 *.pdb
 
-## .NET User-specific files
+## Visual Studio
+### *.user (Visual Studio): User-specific project settings file (Visual Studio).
 *.user
+### *.suo (Visual Studio): Solution user options file (Visual Studio). Stores user-specific settings for the solution.
 *.suo
+### *.sln (Visual Studio): A solution file to link all your projects.
+*.sln
 *.userosscache
 *.sln.docstates
 
@@ -232,39 +285,33 @@ node_modules/
 # Debug files
 *.debug 
 
-# Development files
+# Version Control
+
+## Git
 .git
 .github
-.vscode
-.idea
-.DS_Store
-.codeiumignore
-.cursorignore
-.windsurf
-.cursor
-.claude
-.github
-.taskmaster
+
+## Mercurial
+.hgignore
+
+## Subversion
+.svn/
+
+
+# Development files
 CONTRIBUTING.md
 
 # Source files not needed in the package
-src
-test
-tests
-docs
-examples
+src/
+test/
+tests/
+docs/
+internal-docs/
+examples/
 .editorconfig
-.eslintrc
-.prettierrc
 .travis.yml
 .gitlab-ci.yml
 tsconfig.json
 jest.config.js
 
-# Original project files
-tasks.json
-tasks/
-prd.txt
-scripts/prd.txt
-.env 
 
