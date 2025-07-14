@@ -81,7 +81,7 @@ const CONFIG = {
   }
 };
 
-// Get the absolute path to the .config/filelists directory in the levonk-dotfiles repository
+// Get the absolute path to the .config/filelists directory in the repository
 const REPO_ROOT = path.resolve(__dirname, '..');
 const IGNORE_DIR = path.join(REPO_ROOT, '.config', 'filelists');
 console.log(`Repository root: ${REPO_ROOT}`);
@@ -122,7 +122,7 @@ function readIgnoreFile(baseName, isMarkdown = false) {
     const trimmedContent = content.trim();
     const result = `\n${header}${trimmedContent ? trimmedContent + '\n' : ''}`;
     
-    console.log(`Processed content for ${baseName}:`, result);
+    //console.log(`Processed content for ${baseName}:`, result);
     return result;
   } catch (err) {
     if (err.code !== 'ENOENT') {
