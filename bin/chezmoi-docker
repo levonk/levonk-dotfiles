@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# Get the directory of this script
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_DIR="$(dirname "$SCRIPT_DIR")"
+DOCKERFILE_DIR="$REPO_DIR/docker"
+
+# Build the image if it doesn't exist
+if [[ "$1" == "--build" ]]; then
+    shift
+    echo "Building chezmoi Docker image..."
+    docker build -t levonk/chezmoi:latest "$DOCKERFILE_DIR"
+    echo "Build complete. You can now use './chezmoi-docker' to run chezmoi commands."
+    exit 0
+fi
+
+# Check if the image exists
+if ! docker image inspect levonk/chezmoi:latest >/dev/null 2>&1; then
+    echo "Docker image not found. Building it first..."
+    docker build -t levonk/chezmoi:latest "$DOCKERFILE_DIR"
+fi
+
+# Run chezmoi in the container with proper volume mounts
+docker run -it --rm \
+    --name chezmoi \
+    -v "$HOME:$HOME" \
+    -v "$REPO_DIR:/dotfiles" \
+    -v "$HOME/.local/share/chezmoi:/home/chezmoi/.local/share/chezmoi" \
+    -e USER="$USER" \
+    -e HOME="$HOME" \
+    -e XDG_CONFIG_HOME="$XDG_CONFIG_HOME" \
+    -e XDG_DATA_HOME="$XDG_DATA_HOME" \
+    -e SSH_AUTH_SOCK="$SSH_AUTH_SOCK" \
+    -e GIT_AUTHOR_NAME \
+    -e GIT_AUTHOR_EMAIL \
+    -e GIT_COMMITTER_NAME \
+    -e GIT_COMMITTER_EMAIL \
+    -v "$SSH_AUTH_SOCK:$SSH_AUTH_SOCK" \
+    -v /etc/passwd:/etc/passwd:ro \
+    -v /etc/group:/etc/group:ro \
+    -u "$(id -u):$(id -g)" \
+    -w "$HOME" \
+    --network host \
+    levonk/chezmoi:latest \
+    --config "/dotfiles/.config/chezmoi/chezmoi.toml" \
+    --source "/dotfiles/chezmoi" \
+    --cache "/dotfiles/.cache/chezmoi" \
+    "$@"
