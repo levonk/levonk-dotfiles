@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    volumes:
+      - .:/dotfiles
+      - ./test/home:/home/test
+    environment:
+      - USER=test
+      - HOME=/home/test
+    working_dir: /home/test
+    tty: true
+    stdin_open: true
+    command: ["/bin/bash"]
